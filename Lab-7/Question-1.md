@@ -1,0 +1,1 @@
+## Write a program using pipe() and fork() in which parent process takes one string as input. The same is sent to the child using pipe1 and child will reverse it. After the reversing is completed, the child process will send it (reversed string) to parent process using pipe2. Subsequently, parent process will read the string and displays it.
