@@ -1,0 +1,1 @@
+## Write two different programs (Sender and Receiver) in C to demonstrate IPC using message passing. Process "Sender.c" will take input of atleast 10 numbers and share these numbers with the "Receiver.c" process using message passing. The "Receiver.c" will check each numbers and displays how many odd numbers are there among those numbers and displays them.  
