@@ -15,7 +15,7 @@ Roll: CS21B2037
 
 int main() {
     int fd1;
-    char *myfifo = "/home/vishnu/Desktop/Sem-5/Operating-System/Labs/Lab-8/Question-2/myfile.txt";
+    char *myfifo = "/tmp/myfile.txt";
 
     int a, b;
 

@@ -15,7 +15,7 @@ Roll: CS21B2037
 
 int main() {
     int fd;
-    char *myfifo = "/home/vishnu/Desktop/Sem-5/Operating-System/Labs/Lab-8/Question-2/myfile.txt";
+    char *myfifo = "/tmp/myfile.txt";
 
     // Create a named pipe (FIFO) with read and write permissions.
     mkfifo(myfifo, 0666);
