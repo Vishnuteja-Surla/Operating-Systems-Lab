@@ -3,22 +3,6 @@ Name : S.Vishnu Teja
 Roll: CS21B2037
 */
 
-/*
-Write a C program which will create a child process from a parent process. In parent process, 
-define one global array and take input from the user.
-Perform following operations.
-
-In Parent Process:
-(a) Update the array by subtracting 3 from each element of the array.
-(b) Print the elements, address of the elements and find the minimum element after performing (a).
-(c) Print process id and it’s parent process id
-
-In Child Process:
-(a) Update the global array by adding 2 on each element of the array.
-(b) Print the elements, address of the elements and find the maximum element after performing (a)
-(c) Print process id and it’s parent process id
-*/
-
 // Importing the Libraries
 #include<stdio.h>
 #include<sys/types.h>
