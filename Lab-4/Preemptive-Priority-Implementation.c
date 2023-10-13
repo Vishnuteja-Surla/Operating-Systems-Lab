@@ -39,16 +39,21 @@ void enqueue(struct process *ready, struct process p){
 }
 
 void dequeue(struct process *ready){
-    if(front == -1 || front > rear){
+    if(front == -1){
         printf("Queue is empty\n");
         return;
     }
     struct process p = ready[front];
     front++;
+
+    if(front > rear){
+        front = -1;
+        rear = -1;
+    }
 }
 
 int isempty(){
-    if(front == -1 || front > rear){
+    if(front == -1){
         return 1;
     }
     return 0;
