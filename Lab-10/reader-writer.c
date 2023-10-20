@@ -10,13 +10,6 @@ Roll : CS21B2037
 #include<unistd.h>
 
 
-typedef struct thread_data{
-
-    int reader;
-
-}thread_data;
-
-
 sem_t mutex, wrt;
 
 int reader_count = 0;
