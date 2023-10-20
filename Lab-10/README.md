@@ -11,3 +11,9 @@ In the child process, print a random value between 10 to 30. Whenever you get a 
 ## Implement the producer – consumer problem’s solution using semaphore.
 
 Use one producer thread and one consumer thread. Also, clearly define the produce_item() function and consume_item() function. 
+
+# Question-3
+
+## Implement the reader – writer problem’s solution using semaphore.
+
+Use one writer thread and five reader threads. Also, clearly define the reader() function and writer() function that reader and writer thread execute separately. 
