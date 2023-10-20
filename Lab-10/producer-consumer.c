@@ -7,6 +7,7 @@ Roll : CS21B2037
 #include <stdlib.h>
 #include <pthread.h>
 #include <semaphore.h>
+#include <unistd.h>
 
 #define BUFFER_SIZE 5
 #define MAX_ITEMS 20
@@ -16,27 +17,45 @@ int in = 0;
 int out = 0;
 int produced_count = 0;
 int consumed_count = 0;
+int item = 0;
 
 sem_t mutex;
 sem_t full;
 sem_t empty;
 
+void produce_item(){
+    item = item + 1;
+}
+
+void insert_item(int num){
+    buffer[in] = num;
+    printf("Produced: %d\n", num);
+    in = (in + 1) % BUFFER_SIZE;
+}
+
+void consume_item(){
+    int received_item = buffer[out];
+    printf("Consumed: %d\n", received_item);
+    out = (out + 1) % BUFFER_SIZE;
+}
+
 void* producer(void* arg) {
-   int item = 1;
 
    while (produced_count < MAX_ITEMS) {
-      sem_wait(&empty);
-      sem_wait(&mutex);
 
-      buffer[in] = item;
-      printf("Produced: %d\n", item);
-      item++;
-      in = (in + 1) % BUFFER_SIZE;
+        produce_item();
 
-      produced_count++;
+        sleep(rand()%2);
 
-      sem_post(&mutex);
-      sem_post(&full);
+        sem_wait(&empty);
+        sem_wait(&mutex);
+
+        insert_item(item);
+
+        produced_count++;
+
+        sem_post(&mutex);
+        sem_post(&full);
    }
 
    pthread_exit(NULL);
@@ -44,17 +63,18 @@ void* producer(void* arg) {
 
 void* consumer(void* arg) {
    while (consumed_count < MAX_ITEMS) {
-      sem_wait(&full);
-      sem_wait(&mutex);
 
-      int item = buffer[out];
-      printf("Consumed: %d\n", item);
-      out = (out + 1) % BUFFER_SIZE;
+        sleep(rand()%5);
 
-      consumed_count++;
+        sem_wait(&full);
+        sem_wait(&mutex);
 
-      sem_post(&mutex);
-      sem_post(&empty);
+        consume_item();
+
+        consumed_count++;
+
+        sem_post(&mutex);
+        sem_post(&empty);
    }
 
    pthread_exit(NULL);
