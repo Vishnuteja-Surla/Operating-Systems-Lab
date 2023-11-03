@@ -50,10 +50,9 @@ void *philosopher(void *arg){
         long int num = (long int)arg; // Converting argument to integer
         sleep(1);  // Thinking for some time
         
+        sem_wait(&mutex);   // Acquiring mutex to pickup fork
         state[num] = HUNGRY;    // Changing state to HUNGRY
         printf("Philosopher-%ld is hungry\n", num+1);
-        
-        sem_wait(&mutex);   // Acquiring mutex to pickup fork
         check_neighbours(num);  // Checking if neighbours are not eating and wake him if not
         sem_post(&mutex);   // Releasing mutex to so that other philosophers can pickup fork
         
